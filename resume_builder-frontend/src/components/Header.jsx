@@ -4,7 +4,7 @@ class Header extends Component{
     constructor(props) {
         super(props)
         this.state = {
-            masterDropdown: true,
+            masterDropdown: false,
         }
     }
 
