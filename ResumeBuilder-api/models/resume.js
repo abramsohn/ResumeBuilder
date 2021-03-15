@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 
 const resumeSchema = mongoose.Schema({
+    title: { type: String },
     summary: { type: String },
     experience: [{
         placeOfWork: { type: String, required: true },
