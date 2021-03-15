@@ -6,9 +6,11 @@ class Header extends Component{
             <header>
                 <nav className="nav-main">
                     <div>
-                        <a className="logo" href='/'><h1>Resume Builder</h1></a> 
-                        <button className="button-primary">Sign Up</button>
-                        <button >Log In</button>
+                        <a className="logo" href='/'><h1>Resume Builder</h1></a>
+                        <div className="signin-buttons">
+                            <button className="button-primary">Sign Up</button>
+                            <button >Log In</button>
+                        </div>
                     </div>
                 </nav>
             </header>
