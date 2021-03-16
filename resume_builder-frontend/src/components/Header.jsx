@@ -26,7 +26,7 @@ class Header extends Component{
                         <a className="logo" href='/'><h1>Resume Builder</h1></a>
                         <ul>
                             <li>
-                                <button className="master-dropdown-button" onClick={this.handleDropdown}>Master Resume </button>
+                                <Link to="/" className="button master-dropdown-button" onClick={this.handleDropdown}>Master Resume </Link>
                                 {this.state.masterDropdown ?
                                     <div className="master-dropdown">
                                         <ul className="dropdown">
