@@ -4,7 +4,7 @@ class Header extends Component{
     constructor(props) {
         super(props)
         this.state = {
-            masterDropdown: false,
+            masterDropdown: true,
         }
     }
 
@@ -15,7 +15,6 @@ class Header extends Component{
             this.setState({ masterDropdown: true });
         }
     }
-
     render() {
         return (
             <header>
@@ -28,10 +27,10 @@ class Header extends Component{
                                 {this.state.masterDropdown ?
                                     <div className="master-dropdown">
                                         <ul className="dropdown">
-                                            <li>Add Summary</li>
-                                            <li>Add Experience</li>
-                                            <li>Add Education</li>
-                                            <li>Add Skill</li>
+                                            <li><button onClick={() => { this.props.handleChangeForm('summery') }}>Add Summary</button></li>
+                                            <li><button onClick={() => { this.props.handleChangeForm('experience') }}>Add Experience</button></li>
+                                            <li><button onClick={() => { this.props.handleChangeForm('education') }}>Add Education</button></li>
+                                            <li><button onClick={() => { this.props.handleChangeForm('skills') }}>Add Skills</button></li>
                                         </ul>
                                     </div>
                                     : ''}

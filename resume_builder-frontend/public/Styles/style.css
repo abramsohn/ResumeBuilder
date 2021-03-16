@@ -43,12 +43,12 @@ button{
     float: right;
 }
 
-button.button-primary{
+.button.button-primary, button.button-primary, input[type="submit"].button-primary, input[type="reset"].button-primary, input[type="button"].button-primary{
     background-color: rgb(255, 192, 203);
     border: 1px solid rgb(255, 192, 203);
 }
 
-button.button-primary:hover{
+.button.button-primary:hover, button.button-primary:hover, input[type="submit"].button-primary:hover, input[type="reset"].button-primary:hover, input[type="button"].button-primary:hover{
     background-color: rgb(255, 210, 220);
     border: 1px solid rgb(255, 210, 220);
 }
@@ -71,6 +71,12 @@ button.button-primary:hover{
     text-align: center;
     padding-bottom:15px;
     border-bottom:none;
+}
+
+.dropdown li button{
+    border: none;
+    padding: 0;
+    margin: 0;
 }
 
 .master-dropdown{
@@ -139,4 +145,8 @@ h3.master-tag{
 
 .master-experience dd::before {
     content: '•  ';
+}
+
+textarea:focus{
+    border: 1px solid rgb(255, 210, 220);
 }

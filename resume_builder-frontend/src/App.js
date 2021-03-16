@@ -8,20 +8,29 @@ class App extends Component {
     super(props)
     this.state = {
       resume: [],
+      currentForm: '',
     }
+  }
+
+  handleChangeForm = (formType) => {
+    this.setState({ currentForm: formType });
   }
 
   render() {
     return (
       <div className='container'>
-        < Header />
+        < Header
+          handleChangeForm={this.handleChangeForm}
+        />
         
         <main className="row">
           <div className="master-resume six columns">
             < MasterResume />
           </div>
           <div className="six columns">
-            < Form />
+            < Form
+                currentForm = {this.state.currentForm}
+            />
           </div>
         </main>
       </div>
