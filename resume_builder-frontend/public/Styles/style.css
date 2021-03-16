@@ -46,9 +46,10 @@ button{
 .button.button-primary, button.button-primary, input[type="submit"].button-primary, input[type="reset"].button-primary, input[type="button"].button-primary{
     background-color: rgb(255, 192, 203);
     border: 1px solid rgb(255, 192, 203);
+    margin-right:5px ;
 }
 
-.button.button-primary:hover, button.button-primary:hover, input[type="submit"].button-primary:hover, input[type="reset"].button-primary:hover, input[type="button"].button-primary:hover{
+.button.button-primary:hover, .button.button-primary:focus, button.button-primary:hover, input[type="submit"].button-primary:hover, input[type="reset"].button-primary:hover, input[type="button"].button-primary:hover{
     background-color: rgb(255, 210, 220);
     border: 1px solid rgb(255, 210, 220);
 }

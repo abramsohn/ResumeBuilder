@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch, useParams } from "react-router-dom";
 import Header from './components/Header'
 import MasterResume from './components/MasterResume'
 import Form from './components/Form'
@@ -23,12 +24,14 @@ class App extends Component {
 
   render() {
     return (
+      <Router>
       <div className='container'>
         < Header
           handleChangeForm={this.handleChangeForm}
         />
-        
-        <main className="row">
+          <Switch>
+            <Route exact path="/">
+               <main className="row">
           <div className="master-resume six columns">
             < MasterResume />
           </div>
@@ -39,7 +42,15 @@ class App extends Component {
             />
           </div>
         </main>
-      </div>
+              
+            </Route>
+            <Route path="/signup">
+              <NewUserForm />
+            </Route>
+          </Switch>
+        </div>
+      
+        </Router>
     )
   }
 

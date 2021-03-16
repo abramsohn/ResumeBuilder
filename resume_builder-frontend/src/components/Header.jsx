@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import NewUserForm from './forms/NewUserForm'
 
 class Header extends Component{
     constructor(props) {
@@ -15,7 +17,7 @@ class Header extends Component{
             this.setState({ masterDropdown: true });
         }
     }
-    
+
     render() {
         return (
             <header>
@@ -38,7 +40,7 @@ class Header extends Component{
                             </li>
                         </ul>
                        <div className="signin-buttons">
-                            <button className="button-primary">Sign Up</button>
+                            <Link to="/signup" className="button button-primary" >Sign Up</Link>
                             <button >Log In</button>
                         </div>
                         
