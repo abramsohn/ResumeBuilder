@@ -16,6 +16,10 @@ class App extends Component {
     this.setState({ currentForm: formType });
   }
 
+  handleNewSummery = (newSummery) => {
+    this.setState({summery: newSummery})
+  }
+
   render() {
     return (
       <div className='container'>
@@ -29,7 +33,8 @@ class App extends Component {
           </div>
           <div className="six columns">
             < Form
-                currentForm = {this.state.currentForm}
+              currentForm={this.state.currentForm}
+              handleNewSummery={this.handleNewSummery}
             />
           </div>
         </main>
