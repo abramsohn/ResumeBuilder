@@ -1,6 +1,9 @@
+//// DEPENDENCIES ////
 const mongoose = require('mongoose')
 
+//// SCHEMA ////
 const resumeSchema = mongoose.Schema({
+    title: { type: String },
     summary: { type: String },
     experience: [{
         placeOfWork: { type: String, required: true },
@@ -15,6 +18,5 @@ const resumeSchema = mongoose.Schema({
     skills: { type: String } 
 })
 
-
-
+//// EXPORT ////
 module.exports = mongoose.model('Resume', resumeSchema)
