@@ -43,7 +43,8 @@ class NewUserForm extends Component {
                 // city: this.state.city,
                 // state: this.state.state
             }),
-            Headers: { 'Content-Type': 'application/json' }
+            headers: { 'Content-Type': 'application/json' }
+
         })
             .then(res => res.json())
             .then(createdUser => {
