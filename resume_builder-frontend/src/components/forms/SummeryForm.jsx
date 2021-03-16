@@ -1,9 +1,4 @@
 import React, { Component } from 'react'
-import SummeryForm from './forms/SummeryForm'
-import ExperianceForm from './forms/ExperianceForm'
-import EducationForm from './forms/EducationForm'
-import SkillsForm from './forms/SkillsForm'
-
 
 let baseURL = ''
 
@@ -14,14 +9,11 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 
-class Form extends Component{
+class SummeryForm extends Component{
     constructor(props) {
         super(props)
         this.state = {
-            summery: '',
-            placeOfWork: '',
-            yearsWorked: '',
-            listPoints:'',
+            summery: ''
         }
     }
 
@@ -44,25 +36,14 @@ class Form extends Component{
     }
     
     render() {
-        switch (this.props.currentForm) {
-            case 'summery':
-                return (< SummeryForm
-                    handleNewSummery={this.props.handleNewSummery}
-                />);
-            case 'experience':
-                return ( < ExperianceForm /> );
-            
-            case 'education':
-                return (< EducationForm />);
-            
-            case 'skills':
-                return (< SkillsForm />);
-            
-            default: return ('')
-        }
+            return (  
+                <form onSubmit={this.handleSubmit}>
+                    <label htmlFor="summery">summery</label>
+                    <textarea className="u-full-width" onChange={this.handleChange} id="summery" value={this.state.summery}>  </textarea>
+                    <input className="u-full-width button-primary" type="submit" value="Submit" />
+                </form>
+            )
+        } 
+    }
 
-
-    } 
-}
-
-export default Form
+export default SummeryForm
