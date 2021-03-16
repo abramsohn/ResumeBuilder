@@ -29,7 +29,10 @@ class App extends Component {
           < Header
             handleChangeForm={this.handleChangeForm}
           />
-            <Switch>
+          <Switch>
+            <Route path="/signup">
+                <NewUserForm />
+              </Route>
               <Route exact path="/">
                 <main className="row">
                   <div className="master-resume six columns">
@@ -42,9 +45,6 @@ class App extends Component {
                     />
                   </div>
                 </main>
-              </Route>
-              <Route path="/signup">
-                <NewUserForm />
               </Route>
             </Switch>
           </div>
