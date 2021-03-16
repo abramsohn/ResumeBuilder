@@ -8,7 +8,7 @@ const cors = require('cors')
 const app = express();
 const PORT = 3003;
 // cors configurations
-const whitelist = ['http://localhost:3000']
+const whitelist = ['http://localhost:3000', 'http://localhost:3001']
 const corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.includes(origin)) {
@@ -20,7 +20,7 @@ const corsOptions = {
 }
 
 //// MIDDLEWARE ////
-app.use(cors())
+app.use(cors(corsOptions))
 app.use(express.json());
 
 //// DATABASE ////
