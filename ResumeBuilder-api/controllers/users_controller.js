@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken')
 const keys = require('../config/keys')
 
 //// MODEL ////
-const User = require('../models/user.js')
+const User = require('../models/users.js')
 
 //// VALIDATION ////
 const validateRegisterInput = require('../validation/register.js')
@@ -16,7 +16,7 @@ const validateLoginInput = require('../validation/login.js')
 router.post("/register", (req, res) => {
     // Form validation
   const { errors, isValid } = validateRegisterInput(req.body);
-  // Check validation
+    // Check validation
     if (!isValid) {
       return res.status(400).json(errors);
     }
@@ -28,7 +28,7 @@ router.post("/register", (req, res) => {
           username: req.body.username,
           password: req.body.password
         });
-  // Hash password before saving in database
+        // Hash password before saving in database
         bcrypt.genSalt(10, (err, salt) => {
           bcrypt.hash(newUser.password, salt, (err, hash) => {
             if (err) throw err;
@@ -44,9 +44,9 @@ router.post("/register", (req, res) => {
   });
 
   router.post("/login", (req, res) => {
-    // Form validation
+  // Form validation
   const { errors, isValid } = validateLoginInput(req.body);
-  // Check validation
+    // Check validation
     if (!isValid) {
       return res.status(400).json(errors);
     }
@@ -65,7 +65,7 @@ router.post("/register", (req, res) => {
             id: user.id,
             name: user.name
           };
-  // Sign token
+          // Sign token
           jwt.sign(
             payload,
             keys.secretOrKey,

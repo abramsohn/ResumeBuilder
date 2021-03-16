@@ -42,12 +42,11 @@ class Header extends Component{
                        <div className="signin-buttons">
                             <Link to="/signup" className="button button-primary" >Sign Up</Link>
                             <button >Log In</button>
-                        </div>
-                        
+                        </div>   
                     </div>
                 </nav>
             </header>
-        ); 
+        );
     }
 }
 

@@ -25,34 +25,31 @@ class App extends Component {
   render() {
     return (
       <Router>
-      <div className='container'>
-        < Header
-          handleChangeForm={this.handleChangeForm}
-        />
-          <Switch>
-            <Route exact path="/">
-               <main className="row">
-          <div className="master-resume six columns">
-            < MasterResume />
+        <div className='container'>
+          < Header
+            handleChangeForm={this.handleChangeForm}
+          />
+            <Switch>
+              <Route exact path="/">
+                <main className="row">
+                  <div className="master-resume six columns">
+                    < MasterResume />
+                  </div>
+                  <div className="six columns">
+                    <Form
+                      currentForm={this.state.currentForm}
+                      handleNewSummery={this.handleNewSummery}
+                    />
+                  </div>
+                </main>
+              </Route>
+              <Route path="/signup">
+                <NewUserForm />
+              </Route>
+            </Switch>
           </div>
-          <div className="six columns">
-            < Form
-              currentForm={this.state.currentForm}
-              handleNewSummery={this.handleNewSummery}
-            />
-          </div>
-        </main>
-              
-            </Route>
-            <Route path="/signup">
-              <NewUserForm />
-            </Route>
-          </Switch>
-        </div>
-      
         </Router>
     )
   }
-
 }
 export default App;
