@@ -11,7 +11,7 @@ const resumeSchema = mongoose.Schema({
         listPoints: { type: String }
      }],
     education: [{
-        schoool: { type: String },
+        school: { type: String },
         yearsAttended: { type: String },
         degree: { type: String }
     }],

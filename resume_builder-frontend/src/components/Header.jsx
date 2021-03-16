@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import NewUserForm from './forms/NewUserForm'
 
 class Header extends Component{
     constructor(props) {
         super(props)
         this.state = {
-            masterDropdown: true,
+            masterDropdown: false,
         }
     }
 
@@ -15,6 +17,7 @@ class Header extends Component{
             this.setState({ masterDropdown: true });
         }
     }
+
     render() {
         return (
             <header>
@@ -33,21 +36,17 @@ class Header extends Component{
                                             <li><button onClick={() => { this.props.handleChangeForm('skills') }}>Add Skills</button></li>
                                         </ul>
                                     </div>
-                                    : ''}
-                                
+                                    : ''}  
                             </li>
                         </ul>
                        <div className="signin-buttons">
-                            <button className="button-primary">Sign Up</button>
+                            <Link to="/signup" className="button button-primary" >Sign Up</Link>
                             <button >Log In</button>
-                        </div>
-                        
+                        </div>   
                     </div>
                 </nav>
             </header>
-
         );
-        
     }
 }
 
