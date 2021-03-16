@@ -26,7 +26,7 @@ class SkillsForm extends Component{
         fetch(baseURL + '/resumes', {
             method: 'POST',
             body: JSON.stringify({ skills: this.state.skills }),
-            Headers: { 'Content-Type': 'application/json' }
+            headers: { 'Content-Type': 'application/json' }
         })
             .then(res => res.json())
             .then(createdSkills => {

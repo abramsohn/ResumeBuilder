@@ -32,7 +32,7 @@ class ExperianceForm extends Component{
                 yearsWorked: this.state.yearsWorked,
                 listPoints: this.state.listPoints,
             }),
-            Headers: { 'Content-Type': 'application/json' }
+            headers: { 'Content-Type': 'application/json' }
         })
             .then(res => res.json())
             .then(createdExperiance => {

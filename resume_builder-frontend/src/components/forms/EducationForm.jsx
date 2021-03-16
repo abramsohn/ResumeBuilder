@@ -32,7 +32,7 @@ class EducationForm extends Component{
                 yearsAttended: this.state.yearsAttended,
                 degree: this.state.degree,
             }),
-            Headers: { 'Content-Type': 'application/json' }
+            headers: { 'Content-Type': 'application/json' }
         })
             .then(res => res.json())
             .then(createdEducation => {
