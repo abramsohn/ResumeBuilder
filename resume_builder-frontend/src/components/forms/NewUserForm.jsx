@@ -9,7 +9,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 
-class SummeryForm extends Component {
+class NewUserForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -170,4 +170,4 @@ class SummeryForm extends Component {
         )
     }
 }
-export default SummeryForm
+export default NewUserForm
