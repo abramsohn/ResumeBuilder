@@ -1,8 +1,11 @@
+//// DEPENDENCIES ////
 const express = require('express')
 const resumes = express.Router()
 
+//// MODEL ////
 const Resume = require('../models/resume.js')
 
+//// ROUTES ////
 //index
 resumes.get('/', (req,res) => {
     Resume.find({}, (error, foundResume) => {
@@ -43,7 +46,5 @@ resumes.delete('/:id', (req, res) => {
     });
   });
 
-
-
-
+////EXPORT///
 module.exports = resumes

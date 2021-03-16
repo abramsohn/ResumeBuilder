@@ -1,11 +1,13 @@
+//// DEPENDENCIES ////
 const express = require('express');
-const app = express();
 const mongoose = require('mongoose');
-const PORT = 3003;
 const cors = require('cors')
 
-app.use(express.json());
 
+//// DEPENDENCIES CONFIGURATIONS ////
+const app = express();
+const PORT = 3003;
+// cors configurations
 const whitelist = ['http://localhost:3000']
 const corsOptions = {
   origin: function (origin, callback) {
@@ -17,11 +19,15 @@ const corsOptions = {
   }
 }
 
+//// MIDDLEWARE ////
 app.use(cors())
+app.use(express.json());
 
+//// DATABASE ////
+// errors
 mongoose.connection.on('error', err => console.log(err.message + ' is Mongod not running?'));
 mongoose.connection.on('disconnected', () => console.log ('mongo is disconnected'));
-
+//conections
 mongoose.connect('mongodb://localhost:27017/resumes', { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connection.once('open', () => {
   console.log('connected to mongoose');
@@ -31,10 +37,11 @@ mongoose.connection.once('open', () => {
 //     res.send('hello')
 // })
 
+//// CONTROLLERS ////
 const resumesController = require('./controllers/resume.js')
 app.use('/resumes', resumesController)
 
-
+//// LISTENER ////
 app.listen(PORT, ()=> {
     console.log('running on port', PORT);
   });
