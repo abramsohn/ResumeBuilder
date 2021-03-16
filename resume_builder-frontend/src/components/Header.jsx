@@ -4,7 +4,7 @@ class Header extends Component{
     constructor(props) {
         super(props)
         this.state = {
-            masterDropdown: true,
+            masterDropdown: false,
         }
     }
 
@@ -15,6 +15,7 @@ class Header extends Component{
             this.setState({ masterDropdown: true });
         }
     }
+    
     render() {
         return (
             <header>
@@ -33,8 +34,7 @@ class Header extends Component{
                                             <li><button onClick={() => { this.props.handleChangeForm('skills') }}>Add Skills</button></li>
                                         </ul>
                                     </div>
-                                    : ''}
-                                
+                                    : ''}  
                             </li>
                         </ul>
                        <div className="signin-buttons">
@@ -45,9 +45,7 @@ class Header extends Component{
                     </div>
                 </nav>
             </header>
-
-        );
-        
+        ); 
     }
 }
 

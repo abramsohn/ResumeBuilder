@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Header from './components/Header'
 import MasterResume from './components/MasterResume'
 import Form from './components/Form'
+import NewUserForm from './components/forms/NewUserForm'
 
 class App extends Component {
   constructor(props) {
