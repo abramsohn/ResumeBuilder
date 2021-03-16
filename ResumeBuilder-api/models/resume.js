@@ -1,5 +1,7 @@
+//// DEPENDENCIES ////
 const mongoose = require('mongoose')
 
+//// SCHEMA ////
 const resumeSchema = mongoose.Schema({
     title: { type: String },
     summary: { type: String },
@@ -16,6 +18,5 @@ const resumeSchema = mongoose.Schema({
     skills: { type: String } 
 })
 
-
-
+//// EXPORT ////
 module.exports = mongoose.model('Resume', resumeSchema)
