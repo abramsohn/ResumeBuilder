@@ -31,7 +31,7 @@ class NewUserForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        fetch(baseURL + '/users/register', {
+        fetch(baseURL + '/users', {
             method: 'POST',
             body: JSON.stringify({
                 username: this.state.username,
@@ -47,18 +47,20 @@ class NewUserForm extends Component {
 
         })
             .then(res => res.json())
-            .then(createdUser => {
-                // this.props.handleNewUser(createdUser);
-                this.setState({
-                    username: '',
-                    password: '',
-                    firstName: '',
-                    lastName: '',
-                    address: '',
-                    phoneNumber: '',
-                    city: '',
-                    state: ''
-                })
+            .then(res => { 
+                if(res.token){
+                    this.props.setToken(res.token)
+                    // this.setState({
+                        // username: '',
+                        // password: '',
+                        // firstName: '',
+                        // lastName: '',
+                        // address: '',
+                        // phoneNumber: '',
+                        // city: '',
+                        // state: '',
+                    // })
+                }
             }).catch(error => console.log({ 'Error': error }));
     }
     

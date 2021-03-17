@@ -25,7 +25,8 @@ class Login extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        fetch(baseURL + '/users/register', {
+        // fetch(baseURL + '/users/register', {
+        fetch(baseURL + '/sessions', {
             method: 'POST',
             body: JSON.stringify({
                 username: this.state.username,
@@ -35,8 +36,8 @@ class Login extends Component {
 
         })
             .then(res => res.json())
-            .then(createdUser => {
-                // this.props.handleNewUser(createdUser);
+            .then(res => {
+                this.props.setToken(res.token)
                 this.setState({
                     username: '',
                     password: '',

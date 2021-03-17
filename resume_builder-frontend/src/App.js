@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch, useParams } from "react-router-dom";
+import { Router, Switch, Route } from "react-router-dom";
+import history from './components/history';
 import Header from './components/Header'
 import MasterResume from './components/MasterResume'
 import Form from './components/Form'
@@ -23,19 +24,31 @@ class App extends Component {
     this.setState({summery: newSummery})
   }
 
+  setToken = (userToken) => {
+    this.setState({token: userToken})
+    history.push('/')
+  }
+
+  clearToken = () => {
+    this.setState({token: undefined})
+    history.push('/')
+  }
+
   render() {
     return (
-      <Router>
+      <Router history={history}>
         <div className='container'>
           < Header
+            token={this.state.token}
+            clearToken={this.clearToken}
             handleChangeForm={this.handleChangeForm}
           />
           <Switch>
             <Route path="/signup">
-                <NewUserForm />
+                <NewUserForm setToken={this.setToken}/>
             </Route>
-            <Route path="/signin">
-                <LoginForm />
+            <Route path="/signin"> 
+                <LoginForm setToken={this.setToken} />
               </Route>
               <Route exact path="/">
                 <main className="row">

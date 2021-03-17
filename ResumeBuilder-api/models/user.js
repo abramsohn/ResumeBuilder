@@ -7,12 +7,10 @@ const userSchema = mongoose.Schema({
     password: { type: String, required: true },
     firstName: { type: String, },
     lastName: { type: String, },
-    contactInfo: {
-        address: String,
-        phoneNumber: Number,
-        city: String,
-        state: String
-    }
+    address: String,
+    phoneNumber: Number,
+    city: String,
+    state: String
 });
 
 //// EXPORT ////
