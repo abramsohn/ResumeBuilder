@@ -49,9 +49,9 @@ class Header extends Component{
                             </li>
                         </ul>
 
-                            <div className="signin-buttons">
-                                <button onClick={ this.props.clearToken } className="button"> Log out </button>
-                            </div>
+                        <div className="signin-buttons">
+                            <button onClick={ this.props.clearToken } className="button"> Log out </button>
+                        </div>
                             
                                 
 
