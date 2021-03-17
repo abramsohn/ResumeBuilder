@@ -37,7 +37,8 @@ class Login extends Component {
         })
             .then(res => res.json())
             .then(res => {
-                this.props.setToken(res.token)
+                console.log(res)
+                this.props.setUser(res)
                 this.setState({
                     username: '',
                     password: '',

@@ -26,7 +26,10 @@ router.post('/', (req, res) => {
                 // req.session.currentUser = foundUser;
                 // console.log({token: foundUser._id})
                 res.send({
-                    token: foundUser._id
+                    token: foundUser._id,
+                    firstName: foundUser.firstName,
+                    lastName: foundUser.lastName,
+                    masterResume: foundUser.masterResume,
                     //  currentUser: foundUser
                     // res.redirect('/artworks');
                 });

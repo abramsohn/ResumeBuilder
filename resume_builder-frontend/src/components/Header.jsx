@@ -54,7 +54,6 @@ class Header extends Component{
                         </div>
                             
                                 
-
                             </React.Fragment>
                             }
                     </div>

@@ -24,8 +24,14 @@ class App extends Component {
     this.setState({summery: newSummery})
   }
 
-  setToken = (userToken) => {
-    this.setState({token: userToken})
+  setUser = (userDetails) => {
+    // this.setState({token: userToken})
+    this.setState({
+      token: userDetails.token,
+      firstName: userDetails.firstName,
+      lastName: userDetails.lastName,
+      masterResume: userDetails.masterResume,
+    })
     history.push('/')
   }
 
@@ -45,10 +51,10 @@ class App extends Component {
           />
           <Switch>
             <Route path="/signup">
-                <NewUserForm setToken={this.setToken}/>
+                <NewUserForm setUser={this.setUser}/>
             </Route>
             <Route path="/signin"> 
-                <LoginForm setToken={this.setToken} />
+                <LoginForm setUser={this.setUser} />
               </Route>
               <Route exact path="/">
                 <main className="row">

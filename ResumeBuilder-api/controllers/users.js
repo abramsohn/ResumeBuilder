@@ -22,8 +22,11 @@ router.post('/', (req, res) => {
             });
         } else {
             res.send({
-                 flash: 'Welcome! Please log in',
-                 token: createdUser._id,
+                 flash: 'Welcome!',
+                    token: createdUser._id,
+                    firsName: createdUser.firsName,
+                    lastName: createdUser.lastName,
+                    masterResume: createdUser.masterResume,
             });
         }
     });

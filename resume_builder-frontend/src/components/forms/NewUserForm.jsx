@@ -48,18 +48,8 @@ class NewUserForm extends Component {
         })
             .then(res => res.json())
             .then(res => { 
-                if(res.token){
-                    this.props.setToken(res.token)
-                    // this.setState({
-                        // username: '',
-                        // password: '',
-                        // firstName: '',
-                        // lastName: '',
-                        // address: '',
-                        // phoneNumber: '',
-                        // city: '',
-                        // state: '',
-                    // })
+                if(res){
+                    this.props.setUser(res)
                 }
             }).catch(error => console.log({ 'Error': error }));
     }

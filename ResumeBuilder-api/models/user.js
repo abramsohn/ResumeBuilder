@@ -7,10 +7,25 @@ const userSchema = mongoose.Schema({
     password: { type: String, required: true },
     firstName: { type: String, },
     lastName: { type: String, },
-    address: String,
-    phoneNumber: Number,
-    city: String,
-    state: String
+    masterResume: {
+        title: { type: String },
+        email: String,
+        city: String,
+        address: String,
+        state: String,
+        summary: String,
+        experience: [{
+            placeOfWork: { type: String, required: true },
+            yearsWorked: { type: String, required: true },
+            listPoints: { type: String }
+        }],
+        education: [{
+            school: { type: String },
+            yearsAttended: { type: String },
+            degree: { type: String }
+        }],
+        skills: { type: String } 
+    }
 });
 
 //// EXPORT ////
