@@ -2,26 +2,47 @@ import React, { Component } from 'react'
 import { Router, Switch, Route } from "react-router-dom";
 import history from './components/history';
 import Header from './components/Header'
-import MasterResume from './components/MasterResume'
-import Form from './components/Form'
+import HomePage from './components/HomePage'
+// import MasterResume from './components/MasterResume'
+import ResumeForm from './components/forms/ResumeForm'
+import Resumes from './components/Resumes'
+
 import NewUserForm from './components/forms/NewUserForm'
 import LoginForm from './components/forms/LoginForm'
+
+
+let baseURL = '';
+if (process.env.NODE_ENV === 'development') {
+    baseURL = 'http://localhost:3003';
+} else {
+    baseURL = 'production URL';
+}
+
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      resume: [],
-      currentForm: '',
+      resumes: [],
+      token: "",
+      firstName: "",
+      lastName: "",
+      masterResume: ""
     }
   }
 
-  handleChangeForm = (formType) => {
-    this.setState({ currentForm: formType });
+  componentDidMount() {
+    this.getResumes();
   }
 
-  handleNewSummery = (newSummery) => {
-    this.setState({summery: newSummery})
+  getResumes = () => {
+    fetch(baseURL + '/resumes')
+      .then(data => data.json(), error => console.log(error))
+      .then(parsedData => this.setState({resumes: parsedData}), error => console.log(error))
+  }
+
+  handleNewTitle = (newTitle) => {
+    this.setState({title: newTitle})
   }
 
   setUser = (userDetails) => {
@@ -32,7 +53,7 @@ class App extends Component {
       lastName: userDetails.lastName,
       masterResume: userDetails.masterResume,
     })
-    history.push('/')
+    history.push('/master')
   }
 
   clearToken = () => {
@@ -50,25 +71,38 @@ class App extends Component {
             handleChangeForm={this.handleChangeForm}
           />
           <Switch>
-            <Route path="/signup">
-                <NewUserForm setUser={this.setUser}/>
+            <Route exact path="/">
+              <HomePage/>
             </Route>
+
+
+              <Route exact path="/resumes">
+                < Resumes resumes={this.state.resumes} />
+              </Route>
+
+            <Route path="/signup">
+              <NewUserForm setUser={this.setUser}/>
+            </Route>
+            
             <Route path="/signin"> 
-                <LoginForm setUser={this.setUser} />
-              </Route>
-              <Route exact path="/">
-                <main className="row">
-                  <div className="master-resume six columns">
-                    < MasterResume />
-                  </div>
-                  <div className="six columns">
-                    <Form
-                      currentForm={this.state.currentForm}
-                      handleNewSummery={this.handleNewSummery}
-                    />
-                  </div>
-                </main>
-              </Route>
+              <LoginForm setUser={this.setUser} />
+            </Route>
+
+            {/* <Route exact path="/master"> */}
+              {/* < MasterResume */}
+                  {/* firstName={this.state.firstName} */}
+                  {/* lastName={this.state.lastName} */}
+                  {/* masterResume={this.state.masterResume} */}
+                {/* /> */}
+            {/* </Route> */}
+
+            <Route path="/form">
+              < ResumeForm
+                  firstName={this.state.firstName}
+                  lastName={this.state.lastName}
+                  masterResume={this.state.masterResume}
+                /> 
+            </Route>
             </Switch>
           </div>
         </Router>

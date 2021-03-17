@@ -32,4 +32,15 @@ router.post('/', (req, res) => {
     });
 });
 
+//update
+router.put('/:id', (req, res) => {
+    User.findByIdAndUpdate(req.params.id, req.body, { new: true}, (error, updatedUser) => {
+      if (error) {
+        res.status(400).json({ error: error.message })
+      }
+      res.status(200).json(updatedUser)
+    });
+});
+
+
 module.exports = router;

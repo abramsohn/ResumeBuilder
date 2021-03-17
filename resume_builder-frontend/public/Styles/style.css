@@ -177,3 +177,15 @@ select:focus {
   border: 1px solid black !important;
   outline: black !important;
 }
+
+
+fieldset{
+    margin: 15px 0;
+    padding-bottom: 15px;
+     border-bottom:  1px solid rgb(225, 225, 225);
+}
+
+legend{
+    font-size: 1.2em;
+    text-decoration: underline;
+}

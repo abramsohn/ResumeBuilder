@@ -37,12 +37,7 @@ class Login extends Component {
         })
             .then(res => res.json())
             .then(res => {
-                console.log(res)
                 this.props.setUser(res)
-                this.setState({
-                    username: '',
-                    password: '',
-                })
             }).catch(error => console.log({ 'Error': error }));
     }
     

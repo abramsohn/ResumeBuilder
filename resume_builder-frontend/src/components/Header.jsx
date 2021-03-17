@@ -35,14 +35,12 @@ class Header extends Component{
 
                             <ul>
                             <li>
-                                <Link to="/" className="button master-dropdown-button" onClick={this.handleDropdown}>Master Resume </Link>
+                                <button to="/" className="button master-dropdown-button" onClick={this.handleDropdown}>Master Resume </button>
                                 {this.state.masterDropdown ?
                                     <div className="master-dropdown">
                                         <ul className="dropdown">
-                                            <li><button onClick={() => { this.props.handleChangeForm('summery') }}>Add Summary</button></li>
-                                            <li><button onClick={() => { this.props.handleChangeForm('experience') }}>Add Experience</button></li>
-                                            <li><button onClick={() => { this.props.handleChangeForm('education') }}>Add Education</button></li>
-                                            <li><button onClick={() => { this.props.handleChangeForm('skills') }}>Add Skills</button></li>
+                                            <li><Link to="/master"> View Master</Link></li>
+                                            <li><Link to="/master/form"> Edit Master </Link></li>
                                         </ul>
                                     </div>
                                     : ''}  

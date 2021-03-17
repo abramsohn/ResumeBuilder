@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import TitleForm from './forms/TitleForm'
 import SummeryForm from './forms/SummeryForm'
 import ExperianceForm from './forms/ExperianceForm'
 import EducationForm from './forms/EducationForm'
@@ -41,8 +42,15 @@ class Form extends Component{
     
     render() {
         switch (this.props.currentForm) {
+            case 'title':
+                return (< TitleForm
+                    token={this.props.token}
+                    masterResume={this.props.masterResume}
+                    handleNewTitle={this.props.handleNewTitle}
+                />);
             case 'summery':
                 return (< SummeryForm
+                    masterResume={this.props.masterResume}
                     handleNewSummery={this.props.handleNewSummery}
                 />);
             case 'experience':

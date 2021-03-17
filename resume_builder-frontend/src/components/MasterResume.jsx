@@ -11,7 +11,7 @@ class MasterResume extends Component{
     render() {
         return (
             <div>
-                <h2 className="master-name">Nahia Colunga</h2>     
+                <h2 className="master-name">{`${this.props.firstName} ${this.props.lastName} ` }</h2>
                 <h3 className="master-tag">Lumberjack, Singer-Songwriter</h3>
                 <div className="master-summary">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 

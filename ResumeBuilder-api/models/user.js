@@ -8,7 +8,7 @@ const userSchema = mongoose.Schema({
     firstName: { type: String, },
     lastName: { type: String, },
     masterResume: {
-        title: { type: String },
+        title: String,
         email: String,
         city: String,
         address: String,
