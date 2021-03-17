@@ -26,7 +26,7 @@ class SummeryForm extends Component{
         fetch(baseURL + '/resumes', {
             method: 'POST',
             body: JSON.stringify({ summery: this.state.summery }),
-            Headers: { 'Content-Type': 'application/json' }
+            headers: { 'Content-Type': 'application/json' }
         })
             .then(res => res.json())
             .then(createdSummery => {

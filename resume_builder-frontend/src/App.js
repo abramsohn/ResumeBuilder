@@ -4,6 +4,7 @@ import Header from './components/Header'
 import MasterResume from './components/MasterResume'
 import Form from './components/Form'
 import NewUserForm from './components/forms/NewUserForm'
+import LoginForm from './components/forms/LoginForm'
 
 class App extends Component {
   constructor(props) {
@@ -32,6 +33,9 @@ class App extends Component {
           <Switch>
             <Route path="/signup">
                 <NewUserForm />
+            </Route>
+            <Route path="/signin">
+                <LoginForm />
               </Route>
               <Route exact path="/">
                 <main className="row">

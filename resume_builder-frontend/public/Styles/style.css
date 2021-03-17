@@ -151,3 +151,29 @@ h3.master-tag{
 textarea:focus{
     border: 1px solid rgb(255, 210, 220);
 }
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: 10% auto auto;
+}
+
+.form-signin input[type="text"] {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border: 1px balck solid;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+select:focus {
+  border: 1px solid black !important;
+  outline: black !important;
+}

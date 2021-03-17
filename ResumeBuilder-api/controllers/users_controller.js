@@ -50,7 +50,7 @@ router.post("/register", (req, res) => {
     if (!isValid) {
       return res.status(400).json(errors);
     }
-  const username = req.body.email;
+  const username = req.body.username;
     const password = req.body.password;
     User.findOne({ username }).then(user => {
       // Check if user exists

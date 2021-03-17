@@ -36,12 +36,12 @@ class NewUserForm extends Component {
             body: JSON.stringify({
                 username: this.state.username,
                 password: this.state.password,
-                // firstName: this.state.firstName,
-                // lastName: this.state.lastName,
-                // address: this.state.address,
-                // phoneNumber: this.state.phoneNumber,
-                // city: this.state.city,
-                // state: this.state.state
+                firstName: this.state.firstName,
+                lastName: this.state.lastName,
+                address: this.state.address,
+                phoneNumber: this.state.phoneNumber,
+                city: this.state.city,
+                state: this.state.state
             }),
             headers: { 'Content-Type': 'application/json' }
 
