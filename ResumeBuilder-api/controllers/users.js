@@ -23,10 +23,10 @@ router.post('/', (req, res) => {
         } else {
             res.send({
                  flash: 'Welcome!',
-                    token: createdUser._id,
-                    firsName: createdUser.firsName,
-                    lastName: createdUser.lastName,
-                    masterResume: createdUser.masterResume,
+                    // token: createdUser._id,
+                    // firsName: createdUser.firsName,
+                    // lastName: createdUser.lastName,
+                    user: createdUser
             });
         }
     });
@@ -34,10 +34,14 @@ router.post('/', (req, res) => {
 
 //update
 router.put('/:id', (req, res) => {
-    User.findByIdAndUpdate(req.params.id, req.body, { new: true}, (error, updatedUser) => {
-      if (error) {
+    
+    User.findByIdAndUpdate(req.params.id, req.body, { new: true }, (error, updatedUser) => {
+        console.log(req.body)
+        if (error) {
+        console.log(error)
         res.status(400).json({ error: error.message })
-      }
+        }
+    console.log(updatedUser)
       res.status(200).json(updatedUser)
     });
 });

@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 
 //// SCHEMA ////
 const resumeSchema = mongoose.Schema({
+    userId: { type: String },
     title: { type: String },
     summary: { type: String },
     // experience: [{

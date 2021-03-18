@@ -5,26 +5,26 @@ const mongoose = require('mongoose')
 const userSchema = mongoose.Schema({
     username: { type: String, unique: true, required: true },
     password: { type: String, required: true },
-    firstName: { type: String, },
-    lastName: { type: String, },
+    firstName: { type: String, default: '' },
+    lastName: { type: String, default: ''},
     masterResume: {
-        title: String,
-        email: String,
-        city: String,
-        address: String,
-        state: String,
-        summary: String,
+        title: { type: String, default: '' },
+        city: { type: String, default: '' },
+        address: { type: String, default: '' },
+        state: { type: String, default: '' },
+        summery: { type: String, default: '' },
+        title: { type: String, default: '' },
         experience: [{
-            placeOfWork: { type: String, required: true },
-            yearsWorked: { type: String, required: true },
-            listPoints: { type: String }
+            placeOfWork: { type: String, default: '' },
+            yearsWorked: { type: String, default: '' },
+            listPoints: { type: String, default: '' }
         }],
         education: [{
-            school: { type: String },
-            yearsAttended: { type: String },
-            degree: { type: String }
+            school: { type: String, default: '' },
+            yearsAttended: { type: String, default: '' },
+            degree: { type: String, default: '' }
         }],
-        skills: { type: String } 
+        skills: { type: String, default: '' } 
     }
 });
 
