@@ -33,37 +33,37 @@ class App extends Component {
         firstName: '',
         lastName: '',
       },
-      currentForm:''
+      currentForm: ''
     }
   }
 
   componentDidMount() {
-    if(this.setState)
-    this.authoerizeUser();
-    if(this.setState.user){
+    if (this.setState)
+      this.authoerizeUser();
+    if (this.setState.user) {
       this.getResumes();
-      }
+    }
   }
 
   getResumes = () => {
     fetch(baseURL + `/resumes/${this.props.user.token}`)
       .then(data => data.json(), error => console.log(error))
-      .then(parsedData => this.setState({resumes: parsedData}), error => console.log(error))
+      .then(parsedData => this.setState({ resumes: parsedData }), error => console.log(error))
   }
 
-  handleNewTitle = (newTitle) => {
-    this.setState({title: newTitle})
-  }
+  // handleNewTitle = (newTitle) => {
+  // this.setState({title: newTitle})
+  // }
 
-  authoerizeUser =  () => {
+  authoerizeUser = () => {
     this.setState({
-      user: this.getUser() ,
+      user: this.getUser(),
     });
   }
 
   setUser = (userDetails) => {
     sessionStorage.setItem('user', JSON.stringify(userDetails));
-    history.push('/')
+    history.push('/master')
   }
 
   getUser = () => {
@@ -85,18 +85,26 @@ class App extends Component {
 
   showForm = () => {
     switch (this.state.currentForm) {
-        case 'summery':
-          // console.log('hit');
-            return (< SummeryForm />);
-        case 'title':
-          return < TitleForm />;
+      case 'summery':
+        // console.log('hit');
+        return (< SummeryForm />);
+      case 'title':
+        return < TitleForm handleTitleChange={ this.handleTitleChange }/>;
 
-        default: return ('')
-      }
+      default: return ('')
+    }
   }
 
   handleChangeForm = (form) => {
-    this.setState({currentForm: form});
+    this.setState({ currentForm: form });
+  }
+
+  handleTitleChange = (newTitle) => {
+    const updatedUser = this.state.user;
+    updatedUser.masterResume.title = newTitle
+    this.setState({
+      user: updatedUser
+    })
   }
 
   render() {
@@ -117,7 +125,9 @@ class App extends Component {
             <Route exact path="/master">
                <div className="row">
                   <div className="six columns">
-                    < MasterResume name={`${this.state.user.firstName} ${this.state.user.lastName} `} />
+                  < MasterResume
+                    name={`${this.state.user.firstName} ${this.state.user.lastName}`}
+                    masterResume={this.state.user.masterResume} />
                   </div>
            
                   <div className="six columns">

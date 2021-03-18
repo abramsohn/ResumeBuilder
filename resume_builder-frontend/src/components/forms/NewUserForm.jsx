@@ -47,7 +47,8 @@ class NewUserForm extends Component {
 
         })
             .then(res => res.json())
-            .then(res => { 
+            .then(res => {
+                console.log(res)
                 if(res){
                     this.props.setUser(res)
                 }

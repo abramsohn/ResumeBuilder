@@ -25,29 +25,7 @@ class ResumeForm extends Component{
 
     handleSubmit = (e) => {
         e.preventDefault()
-        fetch(baseURL + '/resumes', {
-            method: 'POST',
-            body: JSON.stringify({
-                title: this.state.title,
-            }),
-            headers: { 'Content-Type': 'application/json' }
-        })
-            .then(res => res.json())
-            .then(jsonRes => {
-                history.push('/')
-
-                // this.setState({
-                    // title: '',
-                    // summery: '',
-                    // school: '',
-                    // yearsAttended: '',
-                    // degree: '',
-                    // placeOfWork: '',
-                    // yearsWorked: '',
-                    // listPoints: '',
-                    // skills:''
-                // })
-            }).catch(error => console.log({ 'Error': error }));
+        this.props.handleTitleChange(this.state.title)
     }
     
     render() {

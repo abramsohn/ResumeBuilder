@@ -23,10 +23,10 @@ router.post('/', (req, res) => {
         } else {
             res.send({
                  flash: 'Welcome!',
-                    token: createdUser._id,
-                    firsName: createdUser.firsName,
-                    lastName: createdUser.lastName,
-                    masterResume: createdUser.masterResume,
+                    // token: createdUser._id,
+                    // firsName: createdUser.firsName,
+                    // lastName: createdUser.lastName,
+                    user: createdUser
             });
         }
     });
