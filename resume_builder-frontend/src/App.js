@@ -6,6 +6,7 @@ import HomePage from './components/HomePage'
 // import MasterResume from './components/MasterResume'
 import ResumeForm from './components/forms/ResumeForm'
 import Resumes from './components/Resumes'
+import Resume from './components/Resume'
 
 import NewUserForm from './components/forms/NewUserForm'
 import LoginForm from './components/forms/LoginForm'
@@ -24,15 +25,20 @@ class App extends Component {
     super(props)
     this.state = {
       resumes: [],
-      token: "",
-      firstName: "",
-      lastName: "",
-      masterResume: ""
+      user: {
+        token: "",
+        firstName: "",
+        lastName: "",
+      }    
     }
   }
 
   componentDidMount() {
+    this.authoerizeUser();
     this.getResumes();
+  }
+
+  componentWillMount() {
   }
 
   getResumes = () => {
@@ -45,19 +51,32 @@ class App extends Component {
     this.setState({title: newTitle})
   }
 
-  setUser = (userDetails) => {
-    // this.setState({token: userToken})
+  authoerizeUser =  () => {
     this.setState({
-      token: userDetails.token,
-      firstName: userDetails.firstName,
-      lastName: userDetails.lastName,
-      masterResume: userDetails.masterResume,
-    })
-    history.push('/master')
+      user: this.getUser() ,
+    });
+  }
+
+  setUser = (userDetails) => {
+     sessionStorage.setItem('user', JSON.stringify(userDetails));
+    
+    history.push('/')
+  }
+
+  getUser = () => {
+    return JSON.parse(sessionStorage.getItem('user'))
   }
 
   clearToken = () => {
-    this.setState({token: undefined})
+    sessionStorage.clear();
+    this.setState({
+      user: {
+        token: undefined,
+        firstName: '',
+        lastName: '',
+      }
+      
+    })
     history.push('/')
   }
 
@@ -66,7 +85,7 @@ class App extends Component {
       <Router history={history}>
         <div className='container'>
           < Header
-            token={this.state.token}
+            user={this.state.user}
             clearToken={this.clearToken}
             handleChangeForm={this.handleChangeForm}
           />
@@ -75,13 +94,9 @@ class App extends Component {
               <HomePage/>
             </Route>
 
-
-              <Route exact path="/resumes">
-                < Resumes resumes={this.state.resumes} />
-              </Route>
-
             <Route path="/signup">
-              <NewUserForm setUser={this.setUser}/>
+              <NewUserForm
+                setUser={this.setUser} />
             </Route>
             
             <Route path="/signin"> 
@@ -96,11 +111,23 @@ class App extends Component {
                 {/* /> */}
             {/* </Route> */}
 
+            <Route exact path="/resumes">
+              <Resumes
+                user={this.state.user}
+                resumes={this.state.resumes}
+              />
+            </Route>
+            
+            <Route path="/Resumes/:_id">
+              <Resume
+                user={this.state.user}
+                resumes={this.state.resumes}
+              />
+            </Route>
+
             <Route path="/form">
               < ResumeForm
-                  firstName={this.state.firstName}
-                  lastName={this.state.lastName}
-                  masterResume={this.state.masterResume}
+                  user={this.state.user}
                 /> 
             </Route>
             </Switch>

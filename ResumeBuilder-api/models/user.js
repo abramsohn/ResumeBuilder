@@ -13,7 +13,7 @@ const userSchema = mongoose.Schema({
         city: String,
         address: String,
         state: String,
-        summary: String,
+        summery: String,
         experience: [{
             placeOfWork: { type: String, required: true },
             yearsWorked: { type: String, required: true },

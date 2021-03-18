@@ -26,7 +26,7 @@ class Header extends Component{
                         <a className="logo" href='/'><h1>Resume Builder</h1></a>
                         
                         
-                        {!this.props.token ?
+                        {!this.props.user.token ?
                             <div className="signin-buttons">
                                 <Link to="/signup" className="button button-primary" >Sign Up</Link>
                                 <Link to="/signin" className="button"> Log In </Link>
