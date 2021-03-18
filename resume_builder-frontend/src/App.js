@@ -13,6 +13,7 @@ import LoginForm from './components/forms/LoginForm'
 import MasterResume from './components/MasterResume';
 import TitleForm from './components/forms/TitleForm';
 import SummeryForm from './components/forms/SummeryForm';
+import SkillsForm from './components/forms/SkillsForm';
 
 
 let baseURL = '';
@@ -28,23 +29,21 @@ class App extends Component {
     super(props)
     this.state = {
       resumes: [],
-      user: {
-        token: '',
-        firstName: '',
-        lastName: '',
-      },
+      token: {},
+      user: {},
       currentForm: ''
     }
   }
 
   componentDidMount() {
     this.authoerizeUser();
+    this.getUser();
   }
   
   updateDatabase = () => {
-    console.log(JSON.stringify({
-                user: this.state.user
-            }))
+    // console.log(JSON.stringify({
+                // user: this.state.user
+            // }))
         // e.preventDefault()
         fetch(baseURL + `/users/` + this.state.user._id, {
             method: 'PUT',
@@ -55,26 +54,46 @@ class App extends Component {
         })
             .then(res => res.json())
           .then(jsonRes => {
-              console.log(jsonRes)
+            this.setState({
+              user: jsonRes,
+            });
             }).catch(error => console.log({ 'Error': error }));
     }
 
   authoerizeUser = () => {
     this.setState({
-      user: this.getUser(),
+      // user: this.getUser(),
+      token: JSON.parse(sessionStorage.getItem('token'))
     });
   }
 
   setUser = (userDetails) => {
+    const token = userDetails.user._id
+    sessionStorage.setItem('token', JSON.stringify(token));
     sessionStorage.setItem('user', JSON.stringify(userDetails));
+    const user = userDetails.user;
+    this.setState({user: user})
     this.authoerizeUser();
-    // history.push('/master')
+    history.push('/master')
   }
 
   getUser = () => {
-    const session = JSON.parse(sessionStorage.getItem('user'))
-    if (session) {
-      return session.user
+    const token = JSON.parse(sessionStorage.getItem('token'));
+    if (token) {
+      console.log('hit')
+      fetch(baseURL + `/users/` + token, {
+        method: 'GET',
+        // body: JSON.stringify(
+          // this.state.user
+        // ),
+        headers: { 'Content-Type': 'application/json' }
+      })
+      .then(res => res.json())
+      .then(jsonRes => {
+          this.setState({
+              user: jsonRes,
+            });
+          }).catch(error => console.log({ 'Error': error }));
     }
   }
 
@@ -103,6 +122,11 @@ class App extends Component {
           title={this.state.user.masterResume.title}
           handleTitleChange={this.handleTitleChange}
         />;
+      case 'skills':
+        return < SkillsForm
+          title={this.state.user.masterResume.skills}
+          handleSkillsChange={this.handleSkillsChange}
+        />;
 
       default: return ('')
     }
@@ -130,6 +154,15 @@ class App extends Component {
     this.updateDatabase()
   }
 
+  handleSkillsChange = (newSummery) => {
+    const updatedUser = this.state.user;
+    updatedUser.masterResume.skills = newSummery
+    this.setState({
+      user: updatedUser
+    });
+    this.updateDatabase()
+  }
+
   render() {
     let masterResume;
     if (this.state.user) {
@@ -146,6 +179,7 @@ class App extends Component {
         <div className='container'>
           < Header
             user={this.state.user}
+            token={this.state.token}
             clearToken={this.clearToken}
             handleChangeForm={this.handleChangeForm}
           />

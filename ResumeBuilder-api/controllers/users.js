@@ -8,6 +8,8 @@ const User = require('../models/user.js')
 
 //// ROUTES ////
 
+//read
+
 // create
 router.post('/', (req, res) => {
     req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
@@ -32,13 +34,20 @@ router.post('/', (req, res) => {
     });
 });
 
+router.get('/:id', (req, res) => {
+    console.log('hit')
+    if (error) {
+        res.status(400).json({ error: error.message })
+        }
+    console.log(updatedUser)
+      res.status(200).json(updatedUser)
+});
+
 //update
 router.put('/:id', (req, res) => {
     
     User.findByIdAndUpdate(req.params.id, req.body, { new: true }, (error, updatedUser) => {
-        console.log(req.body)
         if (error) {
-        console.log(error)
         res.status(400).json({ error: error.message })
         }
     console.log(updatedUser)

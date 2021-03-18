@@ -18,12 +18,17 @@ class MasterResume extends Component{
                 <div className="master-summary">
                     {this.props.masterResume ? this.props.masterResume.summery : '' }
                 </div>
-                <dl className="master-skills">
-                    <dt>Skills:</dt>
-                    <dd>A skill</dd>
-                    <dd>Another skill</dd>
-                    <dd>Yet another skill</dd>
-                </dl>
+
+                <div className="master-skills">
+                    {this.props.masterResume ? this.props.masterResume.skills : '' }
+                </div>
+
+                {/* <dl className="master-skills"> */}
+                    {/* <dt>Skills:</dt> */}
+                    {/* <dd>A skill</dd> */}
+                    {/* <dd>Another skill</dd> */}
+                    {/* <dd>Yet another skill</dd> */}
+                {/* </dl> */}
                 <dl className="master-experience">
                     <dt>Lumber Yard <span className="master-experience-dates"> 1999-2021</span></dt>
                     <dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet commodo nulla facilisi.</dd>

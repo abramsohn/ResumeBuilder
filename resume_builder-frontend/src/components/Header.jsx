@@ -26,7 +26,7 @@ class Header extends Component{
                         <a className="logo" href='/'><h1>Resume Builder</h1></a>
                         
                         
-                        {this.props.user !== null && this.props.user ?
+                        {this.props.token !== null && this.props.token ?
                             <React.Fragment>
 
                             <ul>
@@ -37,6 +37,7 @@ class Header extends Component{
                                         <ul className="dropdown">
                                             <li><button onClick={() => { this.props.handleChangeForm('summery') } }>Summery</button></li>
                                             <li><button onClick={() => { this.props.handleChangeForm('title') }}>Title</button></li>
+                                            <li><button onClick={() => { this.props.handleChangeForm('skills') }}>Skills</button></li>
                                         </ul>
                                     </div>
                                     : ''}  
