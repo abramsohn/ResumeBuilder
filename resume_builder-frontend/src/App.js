@@ -38,6 +38,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+    if(this.setState)
     this.authoerizeUser();
     if(this.setState.user){
       this.getResumes();
@@ -116,7 +117,7 @@ class App extends Component {
             <Route exact path="/master">
                <div className="row">
                   <div className="six columns">
-                    < MasterResume />
+                    < MasterResume name={`${this.state.user.firstName} ${this.state.user.lastName} `} />
                   </div>
            
                   <div className="six columns">
