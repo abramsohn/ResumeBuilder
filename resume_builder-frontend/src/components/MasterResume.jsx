@@ -11,10 +11,12 @@ class MasterResume extends Component{
     render() {
         return (
             <div>
-                <h2 className="master-name">{this.props.name}</h2>
-                <h3 className="master-tag">{this.props.masterResume.title}</h3>
+                {this.props.name ? <h2 className="master-name">{this.props.name}</h2> : ''}
+                {this.props.masterResume ?
+                <h3 className="master-tag">{this.props.masterResume.title}</h3> : '' }
+               
                 <div className="master-summary">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                    {this.props.masterResume ? this.props.masterResume.summery : '' }
                 </div>
                 <dl className="master-skills">
                     <dt>Skills:</dt>

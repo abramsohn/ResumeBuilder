@@ -1,22 +1,16 @@
 import React, { Component } from 'react'
 import history from '../history';
 
-
-let baseURL = ''
-
-if (process.env.NODE_ENV === 'development') {
-    baseURL = 'http://localhost:3003';
-} else {
-    baseURL = 'production URL';
-}
-
-
 class ResumeForm extends Component{
     constructor(props) {
         super(props)
         this.state = {
             title: ''
         }
+    }
+
+    componentDidMount() {
+        this.setState({title: this.props.title})
     }
 
     handleChange = (e) => {

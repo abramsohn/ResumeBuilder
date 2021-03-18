@@ -38,22 +38,26 @@ class App extends Component {
   }
 
   componentDidMount() {
-    if (this.setState)
-      this.authoerizeUser();
-    if (this.setState.user) {
-      this.getResumes();
+    this.authoerizeUser();
+  }
+  
+  updateDatabase = () => {
+    console.log(JSON.stringify({
+                user: this.state.user
+            }))
+        // e.preventDefault()
+        fetch(baseURL + `/users/` + this.state.user._id, {
+            method: 'PUT',
+          body: JSON.stringify({
+                user: this.state.user
+            }),
+            headers: { 'Content-Type': 'application/json' }
+        })
+            .then(res => res.json())
+          .then(jsonRes => {
+              console.log(jsonRes)
+            }).catch(error => console.log({ 'Error': error }));
     }
-  }
-
-  getResumes = () => {
-    fetch(baseURL + `/resumes/${this.props.user.token}`)
-      .then(data => data.json(), error => console.log(error))
-      .then(parsedData => this.setState({ resumes: parsedData }), error => console.log(error))
-  }
-
-  // handleNewTitle = (newTitle) => {
-  // this.setState({title: newTitle})
-  // }
 
   authoerizeUser = () => {
     this.setState({
@@ -63,11 +67,15 @@ class App extends Component {
 
   setUser = (userDetails) => {
     sessionStorage.setItem('user', JSON.stringify(userDetails));
-    history.push('/master')
+    this.authoerizeUser();
+    // history.push('/master')
   }
 
   getUser = () => {
-    return JSON.parse(sessionStorage.getItem('user'))
+    const session = JSON.parse(sessionStorage.getItem('user'))
+    if (session) {
+      return session.user
+    }
   }
 
   clearToken = () => {
@@ -86,10 +94,15 @@ class App extends Component {
   showForm = () => {
     switch (this.state.currentForm) {
       case 'summery':
-        // console.log('hit');
-        return (< SummeryForm />);
+        return (< SummeryForm
+          summery={this.state.user.masterResume.summery}
+          handleSummeryChange={this.handleSummeryChange}
+        />);
       case 'title':
-        return < TitleForm handleTitleChange={ this.handleTitleChange }/>;
+        return < TitleForm
+          title={this.state.user.masterResume.title}
+          handleTitleChange={this.handleTitleChange}
+        />;
 
       default: return ('')
     }
@@ -104,11 +117,31 @@ class App extends Component {
     updatedUser.masterResume.title = newTitle
     this.setState({
       user: updatedUser
-    })
+    });
+    this.updateDatabase()
+  }
+
+  handleSummeryChange = (newSummery) => {
+    const updatedUser = this.state.user;
+    updatedUser.masterResume.summery = newSummery
+    this.setState({
+      user: updatedUser
+    });
+    this.updateDatabase()
   }
 
   render() {
-    return (
+    let masterResume;
+    if (this.state.user) {
+        masterResume = < MasterResume
+          name={`${this.state.user.firstName} ${this.state.user.lastName}`}
+          masterResume={this.state.user.masterResume}
+        /> 
+    } else {
+        masterResume = <div></div>
+    }
+
+    return (  
       <Router history={history}>
         <div className='container'>
           < Header
@@ -124,10 +157,9 @@ class App extends Component {
 
             <Route exact path="/master">
                <div className="row">
-                  <div className="six columns">
-                  < MasterResume
-                    name={`${this.state.user.firstName} ${this.state.user.lastName}`}
-                    masterResume={this.state.user.masterResume} />
+                <div className="six columns">
+                  {masterResume}
+                  
                   </div>
            
                   <div className="six columns">

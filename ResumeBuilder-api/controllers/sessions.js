@@ -24,12 +24,13 @@ router.post('/', (req, res) => {
         } else { // if user is found
             if(bcrypt.compareSync(req.body.password, foundUser.password)) {
                 // req.session.currentUser = foundUser;
-                // console.log({token: foundUser._id})
+                console.log({foundUser})
                 res.send({
-                    token: foundUser._id,
-                    firstName: foundUser.firstName,
-                    lastName: foundUser.lastName,
-                    masterResume: foundUser.masterResume,
+                    user: foundUser
+                    // token: foundUser._id,
+                    // firstName: foundUser.firstName,
+                    // lastName: foundUser.lastName,
+                    // masterResume: foundUser.masterResume,
                     //  currentUser: foundUser
                     // res.redirect('/artworks');
                 });

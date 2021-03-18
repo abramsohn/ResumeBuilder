@@ -26,7 +26,7 @@ class Header extends Component{
                         <a className="logo" href='/'><h1>Resume Builder</h1></a>
                         
                         
-                        {this.props.user !== null && this.props.user.token ?
+                        {this.props.user !== null && this.props.user ?
                             <React.Fragment>
 
                             <ul>
