@@ -3,13 +3,16 @@ import { Router, Switch, Route } from "react-router-dom";
 import history from './components/history';
 import Header from './components/Header'
 import HomePage from './components/HomePage'
-// import MasterResume from './components/MasterResume'
+
 import ResumeForm from './components/forms/ResumeForm'
 import Resumes from './components/Resumes'
 import Resume from './components/Resume'
 
 import NewUserForm from './components/forms/NewUserForm'
 import LoginForm from './components/forms/LoginForm'
+import MasterResume from './components/MasterResume';
+import TitleForm from './components/forms/TitleForm';
+import SummeryForm from './components/forms/SummeryForm';
 
 
 let baseURL = '';
@@ -26,23 +29,23 @@ class App extends Component {
     this.state = {
       resumes: [],
       user: {
-        token: "",
-        firstName: "",
-        lastName: "",
-      }    
+        token: '',
+        firstName: '',
+        lastName: '',
+      },
+      currentForm:''
     }
   }
 
   componentDidMount() {
     this.authoerizeUser();
-    this.getResumes();
-  }
-
-  componentWillMount() {
+    if(this.setState.user){
+      this.getResumes();
+      }
   }
 
   getResumes = () => {
-    fetch(baseURL + '/resumes')
+    fetch(baseURL + `/resumes/${this.props.user.token}`)
       .then(data => data.json(), error => console.log(error))
       .then(parsedData => this.setState({resumes: parsedData}), error => console.log(error))
   }
@@ -58,8 +61,7 @@ class App extends Component {
   }
 
   setUser = (userDetails) => {
-     sessionStorage.setItem('user', JSON.stringify(userDetails));
-    
+    sessionStorage.setItem('user', JSON.stringify(userDetails));
     history.push('/')
   }
 
@@ -80,6 +82,22 @@ class App extends Component {
     history.push('/')
   }
 
+  showForm = () => {
+    switch (this.state.currentForm) {
+        case 'summery':
+          // console.log('hit');
+            return (< SummeryForm />);
+        case 'title':
+          return < TitleForm />;
+
+        default: return ('')
+      }
+  }
+
+  handleChangeForm = (form) => {
+    this.setState({currentForm: form});
+  }
+
   render() {
     return (
       <Router history={history}>
@@ -89,9 +107,22 @@ class App extends Component {
             clearToken={this.clearToken}
             handleChangeForm={this.handleChangeForm}
           />
+
           <Switch>
             <Route exact path="/">
               <HomePage/>
+            </Route>
+
+            <Route exact path="/master">
+               <div className="row">
+                  <div className="six columns">
+                    < MasterResume />
+                  </div>
+           
+                  <div className="six columns">
+                    { this.showForm()}
+                  </div>
+                </div>
             </Route>
 
             <Route path="/signup">
@@ -102,14 +133,6 @@ class App extends Component {
             <Route path="/signin"> 
               <LoginForm setUser={this.setUser} />
             </Route>
-
-            {/* <Route exact path="/master"> */}
-              {/* < MasterResume */}
-                  {/* firstName={this.state.firstName} */}
-                  {/* lastName={this.state.lastName} */}
-                  {/* masterResume={this.state.masterResume} */}
-                {/* /> */}
-            {/* </Route> */}
 
             <Route exact path="/resumes">
               <Resumes

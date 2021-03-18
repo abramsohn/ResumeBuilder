@@ -11,7 +11,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 
-class EditMasterForm extends Component{
+class ResumeForm extends Component{
     constructor(props) {
         super(props)
         this.state = {
@@ -36,6 +36,7 @@ class EditMasterForm extends Component{
         fetch(baseURL + '/resumes', {
             method: 'POST',
             body: JSON.stringify({
+                userId: this.props.user.token,
                 title: this.state.title,
                 summery: this.state.summery,
                 school: this.state.school,
@@ -122,4 +123,4 @@ class EditMasterForm extends Component{
         } 
     }
 
-export default EditMasterForm
+export default ResumeForm

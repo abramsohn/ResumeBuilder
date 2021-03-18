@@ -26,11 +26,7 @@ class Header extends Component{
                         <a className="logo" href='/'><h1>Resume Builder</h1></a>
                         
                         
-                        {!this.props.user.token ?
-                            <div className="signin-buttons">
-                                <Link to="/signup" className="button button-primary" >Sign Up</Link>
-                                <Link to="/signin" className="button"> Log In </Link>
-                            </div> :
+                        {this.props.user !== null && this.props.user.token ?
                             <React.Fragment>
 
                             <ul>
@@ -39,8 +35,8 @@ class Header extends Component{
                                 {this.state.masterDropdown ?
                                     <div className="master-dropdown">
                                         <ul className="dropdown">
-                                            <li><Link to="/master"> View Master</Link></li>
-                                            <li><Link to="/master/form"> Edit Master </Link></li>
+                                            <li><button onClick={() => { this.props.handleChangeForm('summery') } }>Summery</button></li>
+                                            <li><button onClick={() => { this.props.handleChangeForm('title') }}>Title</button></li>
                                         </ul>
                                     </div>
                                     : ''}  
@@ -53,6 +49,12 @@ class Header extends Component{
                             
                                 
                             </React.Fragment>
+                            :
+                            <div className="signin-buttons">
+                                <Link to="/signup" className="button button-primary" >Sign Up</Link>
+                                <Link to="/signin" className="button"> Log In </Link>
+                            </div>
+                            
                             }
                     </div>
                 </nav>

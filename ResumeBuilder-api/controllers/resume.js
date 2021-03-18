@@ -7,12 +7,12 @@ const Resume = require('../models/resume.js')
 
 //// ROUTES ////
 //index
-resumes.get('/', (req,res) => {
-    Resume.find({}, (error, foundResume) => {
+resumes.get('/:id', (req, res) => {
+    Resume.find({userId: req.params.id}, (error, foundResume) => {
         if (error) {
             res.status(400).json({ error: error.message})
         }
-        res.status(200).json(foundResume)
+      res.status(200).json(foundResume)
     })
 })
 
