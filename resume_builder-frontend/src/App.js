@@ -48,9 +48,9 @@ class App extends Component {
         // e.preventDefault()
         fetch(baseURL + `/users/` + this.state.user._id, {
             method: 'PUT',
-          body: JSON.stringify({
-                user: this.state.user
-            }),
+          body: JSON.stringify(
+                this.state.user
+             ),
             headers: { 'Content-Type': 'application/json' }
         })
             .then(res => res.json())

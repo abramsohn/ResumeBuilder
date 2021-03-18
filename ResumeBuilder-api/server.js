@@ -25,8 +25,8 @@ const corsOptions = {
 
 //// MIDDLEWARE ////
 app.use(cors(corsOptions))
-app.use(express.json());
 app.use(express.urlencoded({ extended: true })) 
+app.use(express.json());
 app.use(
   session({
     secret: process.env.SECRET,
