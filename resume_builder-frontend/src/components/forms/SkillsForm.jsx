@@ -10,7 +10,7 @@ class SkillsForm extends Component{
     }
 
     componentDidMount() {
-        this.setState({skills: this.props.skills})
+        this.setState({ skills: this.props.skills })
     }
 
     handleChange = (e) => {

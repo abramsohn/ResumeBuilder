@@ -14,6 +14,7 @@ import MasterResume from './components/MasterResume';
 import TitleForm from './components/forms/TitleForm';
 import SummeryForm from './components/forms/SummeryForm';
 import SkillsForm from './components/forms/SkillsForm';
+import ExperianceForm from './components/forms/ExperianceForm';
 
 
 let baseURL = '';
@@ -124,8 +125,13 @@ class App extends Component {
         />;
       case 'skills':
         return < SkillsForm
-          title={this.state.user.masterResume.skills}
+          skills={this.state.user.masterResume.skills}
           handleSkillsChange={this.handleSkillsChange}
+        />;
+      case 'experiance':
+        return < ExperianceForm
+          experiance={this.state.user.masterResume.experiance}
+          handleExperianceAdd={this.handleExperianceAdd}
         />;
 
       default: return ('')
@@ -146,6 +152,7 @@ class App extends Component {
   }
 
   handleSummeryChange = (newSummery) => {
+    console.log('hit')
     const updatedUser = this.state.user;
     updatedUser.masterResume.summery = newSummery
     this.setState({
@@ -154,10 +161,20 @@ class App extends Component {
     this.updateDatabase()
   }
 
-  handleSkillsChange = (newSummery) => {
+  handleSkillsChange = (newSkill) => {
     const updatedUser = this.state.user;
-    updatedUser.masterResume.skills = newSummery
+    updatedUser.masterResume.skills = newSkill
     this.setState({
+      user: updatedUser
+    });
+    this.updateDatabase()
+  }
+
+  handleExperianceAdd = (newExperience) => {
+      const updatedUser = this.state.user;
+    // console.log(updatedUser.masterResume.experience)
+      updatedUser.masterResume.experience.push(newExperience);
+      this.setState({
       user: updatedUser
     });
     this.updateDatabase()

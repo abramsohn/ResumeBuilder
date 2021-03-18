@@ -38,9 +38,10 @@ class Header extends Component{
                                             <li><button onClick={() => { this.props.handleChangeForm('summery') } }>Summery</button></li>
                                             <li><button onClick={() => { this.props.handleChangeForm('title') }}>Title</button></li>
                                             <li><button onClick={() => { this.props.handleChangeForm('skills') }}>Skills</button></li>
+                                            <li><button onClick={() => { this.props.handleChangeForm('experiance') }}>Experiance</button></li>
                                         </ul>
                                     </div>
-                                    : ''}  
+                                    : ''}
                             </li>
                         </ul>
 

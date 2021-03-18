@@ -21,18 +21,21 @@ class MasterResume extends Component{
 
                 <dl className="master-skills">
                     <dt>Skills:</dt>
-                    <dd>{this.props.masterResume ? this.props.masterResume.skills : '' }</dd>
+                    <dd>{this.props.masterResume ? this.props.masterResume.skills : ''}</dd>
                     
-                    
-
-                    {/* <dd>Another skill</dd> */}
-                    {/* <dd>Yet another skill</dd> */}
                 </dl>
-                <dl className="master-experience">
-                    <dt>Lumber Yard <span className="master-experience-dates"> 1999-2021</span></dt>
-                    <dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet commodo nulla facilisi.</dd>
-                    <dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet commodo nulla facilisi.</dd>
-                </dl>
+                {this.props.masterResume ?
+                    <dl className="master-experience">
+                        {this.props.masterResume.experience.map(job => {
+                            return (
+                                <React.Fragment>
+                                    <dt>{ job.placeOfWork }<span className="master-experience-dates"> { job.yearsWorked }</span></dt>
+                                    <dd>{job.listPoints}</dd>
+                                </React.Fragment>
+                            )
+                        })}
+                    </dl> :
+                    ''}
             </div>
 
         );
