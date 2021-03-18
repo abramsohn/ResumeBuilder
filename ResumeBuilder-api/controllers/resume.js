@@ -17,7 +17,8 @@ resumes.get('/', (req,res) => {
 })
 
 //create
-resumes.post('/', (req,res) => {
+resumes.post('/', (req, res) => {
+  console.log(req.body)
     Resume.create(req.body, (error, createdResume) => {
         if (error) {
             res.status(400).json({error: error.message})
