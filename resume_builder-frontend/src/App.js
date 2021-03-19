@@ -186,6 +186,7 @@ class App extends Component {
         masterResume = < MasterResume
           name={`${this.state.user.firstName} ${this.state.user.lastName}`}
           masterResume={this.state.user.masterResume}
+          handleChangeForm={this.handleChangeForm}
         /> 
     } else {
         masterResume = <div></div>
