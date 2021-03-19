@@ -9,9 +9,8 @@ class MasterResume extends Component{
     }
     
     render() {
-        let masterResume;
-        if (this.props.masterResume) {
-            masterResume =  <div>
+        return (
+            <div>
                 <h2 className="master-name">{this.props?.name || ''}</h2>
                 {this.props.masterResume ?
                     <h3 className="resume-item master-tag">
@@ -43,8 +42,6 @@ class MasterResume extends Component{
                     </div>
                 </div>
                 
-
-
                 {this.props.masterResume.experience.length > 0 ?
                     <ul>
                         {this.props.masterResume.experience.map(job => {
@@ -78,15 +75,7 @@ class MasterResume extends Component{
                         </div> 
                     }
             </div>
-        
-        } else {
-            masterResume = <div></div>
-        }
-        
-        return (
-            <div>
-                {masterResume}
-            </div>
+
         );
         
     }

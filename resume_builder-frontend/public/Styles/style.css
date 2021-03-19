@@ -206,6 +206,11 @@ legend{
     font-weight: bolder;
 
 }
+
+master-skills{
+    margin: 15px 0;
+}
+
 .master-skills-title,
 .master-skills-items {
     display: inline;
@@ -224,7 +229,7 @@ legend{
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(255,255,255,1); 
+    background-color: rgba(255,255,255,0.8); 
     z-index: 2; 
     
 }

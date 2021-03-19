@@ -12,12 +12,16 @@ class ExperianceForm extends Component{
     }
 
     componentDidMount() {
-        // this.setState({
-            // placeOfWork: this.props.placeOfWork,
-            // yearsWorked: this.props.yearsWorked,
-            // listPoints: this.props.listPoints,
-        // })
+        if (this.props.job) {
+            console.log(this.props.job)
+            this.setState({
+                placeOfWork: this.props.job.placeOfWork,
+                yearsWorked: this.props.job.yearsWorked,
+                listPoints: this.props.job.listPoints,
+            })
+        }
     }
+    
 
     handleChange = (e) => {
         this.setState({[e.target.id]: e.target.value}) 
@@ -30,7 +34,24 @@ class ExperianceForm extends Component{
             yearsWorked: this.state.yearsWorked,
             listPoints: this.state.listPoints,
         }
-        this.props.handleExperianceAdd(experiance)
+        if (this.props.job) {
+            this.props.handleExperianceUpdate(this.props.job, experiance)
+        } else {
+            this.props.handleExperianceAdd(experiance)
+        }
+        this.setState({
+            placeOfWork: '',
+            yearsWorked: '',
+            listPoints: '',
+        })
+    }
+
+     handleEdit = (job) => {
+         this.setState({
+            placeOfWork: job.placeOfWork,
+            yearsWorked: job.yearsWorked,
+            listPoints: job.listPoints,
+        });
     }
 
     render() {

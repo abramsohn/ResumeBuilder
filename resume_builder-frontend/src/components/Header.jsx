@@ -25,10 +25,8 @@ class Header extends Component{
                     <div>
                         <a className="logo" href='/'><h1>Resume Builder</h1></a>
                         
-                        
                         {this.props.token !== null && this.props.token ?
                             <React.Fragment>
-
                             <ul>
                             <li>
                                 <button to="/" className="button master-dropdown-button" onClick={this.handleDropdown}>Master Resume </button>

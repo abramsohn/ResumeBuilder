@@ -28,11 +28,13 @@ if (process.env.NODE_ENV === 'development') {
 class App extends Component {
   constructor(props) {
     super(props)
+    this.experienceForm = React.createRef();
     this.state = {
       resumes: [],
       token: {},
       user: {},
-      currentForm: ''
+      currentForm: '',
+      job: ''
     }
   }
 
@@ -130,8 +132,11 @@ class App extends Component {
         />;
       case 'experiance':
         return < ExperianceForm
+          ref={this.experienceForm}
           experiance={this.state.user.masterResume.experiance}
           handleExperianceAdd={this.handleExperianceAdd}
+          handleExperianceUpdate={this.handleExperianceUpdate}
+          job={this.state.job}
         />;
 
       default: return ('')
@@ -152,7 +157,6 @@ class App extends Component {
   }
 
   handleSummeryChange = (newSummery) => {
-    console.log('hit')
     const updatedUser = this.state.user;
     updatedUser.masterResume.summery = newSummery
     this.setState({
@@ -172,13 +176,52 @@ class App extends Component {
 
   handleExperianceAdd = (newExperience) => {
       const updatedUser = this.state.user;
-    // console.log(updatedUser.masterResume.experience)
       updatedUser.masterResume.experience.push(newExperience);
       this.setState({
       user: updatedUser
     });
     this.updateDatabase()
   }
+  
+  handleExperienceEdit = (job) => {
+    console.log(job)
+    this.setState({
+        job: job
+    });
+    this.handleChangeForm('experiance')
+
+    // this.experienceForm.current.handleEdit(job)
+  }
+
+  handleExperianceUpdate = (job, experiance) => {
+    const updatedUser = this.state.user;
+      const indexToUpdate = updatedUser.masterResume.experience.indexOf(job);
+      updatedUser.masterResume.experience = [
+        ...updatedUser.masterResume.experience.slice(0, indexToUpdate),
+        experiance,
+        ...updatedUser.masterResume.experience.slice(indexToUpdate + 1)
+      ]
+
+      this.setState({
+      user: updatedUser
+    });
+    this.updateDatabase()
+  }
+
+  handleExperianceDelete = (experience) => {
+      const updatedUser = this.state.user;
+      const indexToRemove = updatedUser.masterResume.experience.indexOf(experience);
+      updatedUser.masterResume.experience = [
+        ...updatedUser.masterResume.experience.slice(0, indexToRemove),
+        ...updatedUser.masterResume.experience.slice(indexToRemove + 1)
+      ]
+
+      this.setState({
+      user: updatedUser
+    });
+    this.updateDatabase()
+  }
+
 
   render() {
     let masterResume;
@@ -187,6 +230,9 @@ class App extends Component {
           name={`${this.state.user.firstName} ${this.state.user.lastName}`}
           masterResume={this.state.user.masterResume}
           handleChangeForm={this.handleChangeForm}
+          handleExperianceDelete={this.handleExperianceDelete}
+          handleExperienceEdit={this.handleExperienceEdit}
+
         /> 
     } else {
         masterResume = <div></div>
