@@ -27,7 +27,7 @@ class Header extends Component{
                         
                         {this.props.token !== null && this.props.token ?
                             <React.Fragment>
-                            <ul>
+                            {/* <ul>
                             <li>
                                 <button to="/" className="button master-dropdown-button" onClick={this.handleDropdown}>Master Resume </button>
                                 {this.state.masterDropdown ?
@@ -41,7 +41,7 @@ class Header extends Component{
                                     </div>
                                     : ''}
                             </li>
-                        </ul>
+                        </ul> */}
 
                         <div className="signin-buttons">
                             <button onClick={ this.props.clearToken } className="button"> Log out </button>

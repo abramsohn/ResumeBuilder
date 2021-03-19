@@ -103,12 +103,8 @@ class App extends Component {
   clearToken = () => {
     sessionStorage.clear();
     this.setState({
-      user: {
-        token: undefined,
-        firstName: '',
-        lastName: '',
-      }
-      
+      token: undefined,
+      user: {}
     })
     history.push('/')
   }

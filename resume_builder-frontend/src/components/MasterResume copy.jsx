@@ -24,7 +24,7 @@ class MasterResume extends Component{
                 : ''}
                
                 <div className="resume-item master-summary">
-                    {this.props.masterResume ? this.props.masterResume.summery : ''}
+                    {this.props.masterResume !== "" ? this.props.masterResume.summery : 'Click to Add A Title'}
                     <div className="overlay">
                         <span className="actions">
                             <button onClick={() => { this.props.handleChangeForm('summery') }}>Edit</button> 
